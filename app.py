@@ -1,6 +1,6 @@
 from flask import Flask, redirect, request, render_template, send_from_directory
 from PIL import Image
-import numpy as np, math, os, string, random, datetime
+import numpy as np, math, os, string, random
 
 app = Flask(__name__)
 
@@ -87,7 +87,10 @@ def upload():
 
         # 保存
         # dt_now = datetime.now().strftime("%Y_%m_%d%_H_%M_%S_") + random_str(5)
-        save_path = os.path.join(SAVE_DIR, 'aiueo' + ".png")
+
+        randlst = "".join([random.choice(string.ascii_letters + string.digits) for i in range(10)])
+
+        save_path = os.path.join(SAVE_DIR, randlst + ".png")
         out_pic.save(save_path , quality=95)
         print("save", save_path)
 
